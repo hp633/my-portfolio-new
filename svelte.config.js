@@ -24,10 +24,12 @@ const config = {
 		paths: {
 			base: process.env.NODE_ENV === 'production' ? base : ''
 		},
-		// FIX: Bypasses static asset route warnings during pre-rendering for all your standalone media/document attachments
 		prerender: {
+			// FIX 1: Ignores the missing HTML layout ID anchor link warnings (#projects)
+			handleMissingId: 'ignore',
+
+			// FIX 2: Bypasses raw file path asset mismatch warnings for documents and images
 			handleHttpError: ({ path, message }) => {
-				// Safely swallows path errors for your resume, portrait, and logos folders
 				if (
 					path.includes('resume.pdf') || 
 					path.includes('hinal-portrait') || 
