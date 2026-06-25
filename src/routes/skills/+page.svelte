@@ -37,7 +37,9 @@
 								classes={['cursor-pointer decoration-none']}
 								tiltDegree={1}
 								href={`${base}/skills/${skill.slug}`}
-								bgImg={getAssetURL(skill.logo)}
+								
+								bgImg={typeof skill.logo === 'string' ? skill.logo : getAssetURL(skill.logo)}
+								
 								color={skill.color}
 							>
 								<p class="text-[var(--tertiary-text)]">{skill.name}</p>
