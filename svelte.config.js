@@ -21,8 +21,9 @@ const config = {
 			'@stores': './src/lib/stores',
 			'@utils': './src/lib/utils'
 		},
+		// Change process.env.NODE_ENV === 'production' ? base : '' to a clean empty string ''
 		paths: {
-			base: process.env.NODE_ENV === 'production' ? base : ''
+			base: ''
 		},
 		prerender: {
 			// FIX 1: Ignores the missing HTML layout ID anchor link warnings (#projects)

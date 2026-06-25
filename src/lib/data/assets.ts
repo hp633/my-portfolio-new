@@ -1,8 +1,8 @@
 import type { Asset } from '$lib/types';
 import { theme } from '$lib/stores/theme';
 import { base } from '$app/paths';
-
-const gh = (file: string) => `${base}/logos/${file}`;
+// Ensure the base path evaluation helper is simplified to point directly to your static assets directory
+const gh = (file: string) => `/logos/${file}`;
 
 const a = (light: string, dark?: string): Asset =>
 	dark ? { dark: gh(dark), light: gh(light) } : gh(light);
