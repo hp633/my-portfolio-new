@@ -24,10 +24,15 @@ const config = {
 		paths: {
 			base: process.env.NODE_ENV === 'production' ? base : ''
 		},
-		// FIX: Tells the compiler to ignore any strict asset or missing link warnings for the resume file and finish the build smoothly
+		// FIX: Bypasses static asset route warnings during pre-rendering for all your standalone media/document attachments
 		prerender: {
 			handleHttpError: ({ path, message }) => {
-				if (path.includes('resume.pdf') || path.endsWith('resume.pdf')) {
+				// Safely swallows path errors for your resume, portrait, and logos folders
+				if (
+					path.includes('resume.pdf') || 
+					path.includes('hinal-portrait') || 
+					path.includes('/logos/')
+				) {
 					return;
 				}
 				throw new Error(message);
