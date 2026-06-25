@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { base } from '$app/paths';
 	import { titleSuffix } from '@data/app';
 	import { useTitle } from '$lib/utils/helpers';
 
