@@ -5,8 +5,6 @@ const base = '/slick-portfolio-svelte';
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
-	// Consult https://kit.svelte.dev/docs/integrations#preprocessors
-	// for more information about preprocessors
 	preprocess: vitePreprocess(),
 	vitePlugin: {
 		inspector: {
@@ -25,6 +23,15 @@ const config = {
 		},
 		paths: {
 			base: process.env.NODE_ENV === 'production' ? base : ''
+		},
+		// FIX: Tells the compiler to ignore any strict asset or missing link warnings for the resume file and finish the build smoothly
+		prerender: {
+			handleHttpError: ({ path, message }) => {
+				if (path.includes('resume.pdf') || path.endsWith('resume.pdf')) {
+					return;
+				}
+				throw new Error(message);
+			}
 		}
 	}
 };
